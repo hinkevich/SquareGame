@@ -44,15 +44,17 @@ namespace SquareGame
             _screenRender.Render(_scene);
             AddFirstInformation();
             Console.ReadLine();
-
+            
             for (int i = 0; i < _gameSettings.QuantityRaund; i++)
             {
                 _screenRender.Render(_scene);
                 FirstPlayerTurn();
                 _screenRender.Render(_scene);
                 SecondPlayerTurn();
-                Console.ReadLine();
+                
             }
+            FinalMsg();
+
 
         }
         public void AddFirstInformation()
@@ -64,6 +66,8 @@ namespace SquareGame
             Console.SetCursorPosition(10, 17);
             Console.WriteLine("PlayerTwo");
         }
+
+
 
         public bool IsAddSquare(int[] diceRoll, int[] coordinateInput, char[,] areaGame)
         {
@@ -100,7 +104,7 @@ namespace SquareGame
             return true;
         }
 
-        public void ViewResult(char[,] areaGame)
+        public int[] ViewResult(char[,] areaGame)
         {
 
             int resultFirsPlayer = 0;
@@ -130,12 +134,46 @@ namespace SquareGame
             //result
             Console.SetCursorPosition(12, 9);
             Console.WriteLine(resultFirsPlayer);
-            Console.SetCursorPosition(12, 19);
+            Console.SetCursorPosition(12, 20);
             Console.WriteLine(resultSecondPlayer);
             /*
             Console.WriteLine("Hello Player one:");
             Console.WriteLine(_gameSettings.helloMsg);
             */
+            return new int[] { resultFirsPlayer, resultSecondPlayer };
+        }
+
+        public void FinalMsg()
+        {
+            int[] result = ViewResult(GetAreaGame());
+
+            if (result[0] > result[1])
+            {
+                ClearMsg();
+                OutputMsg("First Player is winner.", _gameSettings.infoMsgX, _gameSettings.infoMsgY);
+                Console.ForegroundColor = ConsoleColor.Red;
+                OutputMsg("!!! GAME OVER !!!", _gameSettings.infoMsgX, _gameSettings.infoMsgY + 1);
+                Console.ResetColor();
+
+            }
+
+            if (result[0] < result[1])
+            {
+                ClearMsg();
+                OutputMsg("First Player is winner.", _gameSettings.infoMsgX, _gameSettings.infoMsgY);
+                Console.ForegroundColor = ConsoleColor.Red;
+                OutputMsg("!!! GAME OVER !!!", _gameSettings.infoMsgX, _gameSettings.infoMsgY + 1);
+                Console.ResetColor();
+            }
+
+            if (result[0] == result[1])
+            {
+                ClearMsg();
+                OutputMsg("The players tied", _gameSettings.infoMsgX, _gameSettings.infoMsgY);
+                Console.ForegroundColor = ConsoleColor.Red;
+                OutputMsg("!!! GAME OVER !!!", _gameSettings.infoMsgX, _gameSettings.infoMsgY+1);
+                Console.ResetColor();
+            }
         }
 
         public int[] CalculateDiceRoll()
@@ -174,7 +212,7 @@ namespace SquareGame
                 }
                 catch (Exception)
                 {
-                    Console.SetCursorPosition(30, y);
+                    Console.SetCursorPosition(32, y);
                     OutputMsg("Invalid type             ", x, y);
                     checkInput = true;
                 }
@@ -185,7 +223,7 @@ namespace SquareGame
             {
                 checkInput = false;
                 OutputMsg("Please input coordinate y ", x, y);
-                Console.SetCursorPosition(30, y);
+                Console.SetCursorPosition(32, y);
                 msg = Console.ReadLine();
                 OutputMsg("                            ", 30, y);
 
@@ -201,6 +239,7 @@ namespace SquareGame
                 }
 
             } while (checkInput);
+            ClearMsg();
 
             return coordinate;
         }
@@ -240,11 +279,11 @@ namespace SquareGame
                 for (int j = 0; j < columns - x; j++)
                 {
                     int checkIsEmty = 0;
-                    for (int k = i; k < y; k++)
+                    for (int k = i; k < rows-y; k++)
                     {
-                        for (int l = 0; l < x; l++)
+                        for (int l = j; l < columns-x; l++)
                         {
-                            if (areaGame[k, l] == ' ' || areaGame[k, l] == '\0')
+                            if (areaGame[k, l] == ' ')
                             {
                                 checkIsEmty++;
                             }
@@ -281,7 +320,7 @@ namespace SquareGame
 
             if (!isCannCreate)
             {
-                OutputMsg("This square cannot add. Turn Next Player.", _gameSettings.infoMsgX + 4, _gameSettings.infoMsgY);
+                OutputMsg("This square cannot add. Turn Next Player.", _gameSettings.infoMsgX, _gameSettings.infoMsgY);
                 return false;
             }
 
@@ -312,7 +351,7 @@ namespace SquareGame
             {
                 ClearMsg();
                 Console.ForegroundColor = ConsoleColor.Red;
-                OutputMsg("This square cannot add.Press enter to Move Next Player.", _gameSettings.infoMsgX + 4, _gameSettings.infoMsgY);
+                OutputMsg("This square cannot add.Press enter to Move Next Player.", _gameSettings.infoMsgX, _gameSettings.infoMsgY);
                 Console.ReadLine();
 
                 Console.ResetColor();
@@ -333,15 +372,15 @@ namespace SquareGame
 
             if (!isCannCreate)
             {
-                OutputMsg("This square cannot add. Press enter to dice roll.", _gameSettings.infoMsgX + 2, _gameSettings.infoMsgY);
+                OutputMsg("This square cannot add. Press enter to dice roll.", _gameSettings.infoMsgX, _gameSettings.infoMsgY);
                 arrayDice = CalculateDiceRoll();
-                OutputMsg("Result dice roll: " + arrayDice[0] + " " + arrayDice[1], _gameSettings.infoMsgX + 3, _gameSettings.infoMsgY);
+                OutputMsg("Result dice roll: " + arrayDice[0] + " " + arrayDice[1], _gameSettings.infoMsgX, _gameSettings.infoMsgY);
                 isCannCreate = IsCanCreateSquaire(arrayDice, areaGame);
             }
 
             if (!isCannCreate)
             {
-                OutputMsg("This square cannot add. Turn Next Player.", _gameSettings.infoMsgX + 4, _gameSettings.infoMsgY);
+                OutputMsg("This square cannot add. Turn Next Player.", _gameSettings.infoMsgX, _gameSettings.infoMsgY);
                 return false;
             }
 
@@ -371,7 +410,7 @@ namespace SquareGame
             {
                 ClearMsg();
                 Console.ForegroundColor = ConsoleColor.Red;
-                OutputMsg("This square cannot add.Press enter to Move Next Player.", _gameSettings.infoMsgX + 4, _gameSettings.infoMsgY);
+                OutputMsg("This square cannot add.Press enter to Move Next Player.", _gameSettings.infoMsgX, _gameSettings.infoMsgY);
                 Console.ReadLine();
 
                 Console.ResetColor();
