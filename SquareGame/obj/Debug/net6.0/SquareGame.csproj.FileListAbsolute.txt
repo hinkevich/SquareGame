@@ -1,0 +1,15 @@
+D:\csharp\lern\squareGame\SquareGame\SquareGame\bin\Debug\net6.0\SquareGame.exe
+D:\csharp\lern\squareGame\SquareGame\SquareGame\bin\Debug\net6.0\SquareGame.deps.json
+D:\csharp\lern\squareGame\SquareGame\SquareGame\bin\Debug\net6.0\SquareGame.runtimeconfig.json
+D:\csharp\lern\squareGame\SquareGame\SquareGame\bin\Debug\net6.0\SquareGame.dll
+D:\csharp\lern\squareGame\SquareGame\SquareGame\bin\Debug\net6.0\SquareGame.pdb
+D:\csharp\lern\squareGame\SquareGame\SquareGame\obj\Debug\net6.0\SquareGame.csproj.AssemblyReference.cache
+D:\csharp\lern\squareGame\SquareGame\SquareGame\obj\Debug\net6.0\SquareGame.GeneratedMSBuildEditorConfig.editorconfig
+D:\csharp\lern\squareGame\SquareGame\SquareGame\obj\Debug\net6.0\SquareGame.AssemblyInfoInputs.cache
+D:\csharp\lern\squareGame\SquareGame\SquareGame\obj\Debug\net6.0\SquareGame.AssemblyInfo.cs
+D:\csharp\lern\squareGame\SquareGame\SquareGame\obj\Debug\net6.0\SquareGame.csproj.CoreCompileInputs.cache
+D:\csharp\lern\squareGame\SquareGame\SquareGame\obj\Debug\net6.0\SquareGame.dll
+D:\csharp\lern\squareGame\SquareGame\SquareGame\obj\Debug\net6.0\refint\SquareGame.dll
+D:\csharp\lern\squareGame\SquareGame\SquareGame\obj\Debug\net6.0\SquareGame.pdb
+D:\csharp\lern\squareGame\SquareGame\SquareGame\obj\Debug\net6.0\SquareGame.genruntimeconfig.cache
+D:\csharp\lern\squareGame\SquareGame\SquareGame\obj\Debug\net6.0\ref\SquareGame.dll
